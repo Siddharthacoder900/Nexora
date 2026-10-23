@@ -1,0 +1,37 @@
+{
+  "name": "nexora-marketplace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multi-vendor Nexora marketplace demo using Express and MongoDB",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "npm run build && node server/server.js",
+    "dev": "node --watch server/server.js",
+    "client": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "dev:all": "concurrently -k \"npm:dev\" \"npm:client\"",
+    "seed": "node server/seed.js",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "multer": "^2.0.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.5.2",
+    "concurrently": "^9.1.2",
+    "vite": "^6.3.5"
+  }
+}
