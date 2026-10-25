@@ -311,3 +311,15 @@ body { background: var(--market-paper); font-size: 14px; }
 .checkout-summary { display: grid; gap: 7px; margin-top: 12px; font-size: 11px; }
 .summary-line { display: flex; justify-content: space-between; gap: 12px; }
 .summary-discount { color: var(--green); }
+
+.footer-credit { margin: 0; padding: 0 24px 20px; color: #77827a; font: 500 11px/1.6 var(--sans); letter-spacing: .15px; text-align: center; }
+.footer-credit-name { color: #536b5b; transition: color .2s ease, text-decoration-color .2s ease; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; }
+.footer-credit-name:hover { color: var(--green-dark); text-decoration-color: currentColor; }
+
+@media (max-width: 600px) {
+  .footer-credit { padding: 0 20px 18px; font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-credit-name { transition: none; }
+}
