@@ -323,3 +323,182 @@ body { background: var(--market-paper); font-size: 14px; }
 @media (prefers-reduced-motion: reduce) {
   .footer-credit-name { transition: none; }
 }
+
+.nexora-footer {
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 12% 0%, rgb(70 105 116 / 22%), transparent 42%),
+    linear-gradient(135deg, #101d2a, #17283a 58%, #10202d);
+  color: #eef2f2;
+}
+.nexora-footer-main {
+  display: grid;
+  grid-template-columns: 1.2fr .85fr 1.2fr .95fr;
+  gap: clamp(26px, 4vw, 54px);
+  padding-top: 62px;
+  padding-bottom: 54px;
+}
+.nexora-footer-brand,
+.nexora-footer-column { min-width: 0; }
+.nexora-footer-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #f5f7f6;
+  font: 800 16px var(--display);
+  letter-spacing: 1.5px;
+}
+.nexora-footer-mark {
+  display: grid;
+  width: 33px;
+  height: 33px;
+  place-items: center;
+  border-radius: 50%;
+  background: #d5e68c;
+  color: #16283a;
+  font: 800 21px var(--display);
+  letter-spacing: 0;
+}
+.nexora-footer-tagline {
+  margin: 21px 0 7px;
+  color: #edf1ef;
+  font: 600 14px var(--display);
+}
+.nexora-footer-description,
+.nexora-footer-payments > p {
+  max-width: 250px;
+  margin: 0;
+  color: #b0bdc5;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.nexora-footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+}
+.nexora-footer-column h2 {
+  margin: 2px 0 7px;
+  color: #f5f7f6;
+  font: 700 12px var(--display);
+  letter-spacing: .25px;
+}
+.nexora-footer-column > a {
+  color: #b8c3ca;
+  font-size: 12px;
+  line-height: 1.5;
+  transition: color .2s ease, transform .2s ease;
+}
+.nexora-footer-column > a:hover {
+  color: #d5e68c;
+  transform: translateX(3px);
+}
+.nexora-footer-column > a:focus-visible,
+.nexora-footer-wordmark:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid #d5e68c;
+  outline-offset: 4px;
+}
+.nexora-footer-unavailable {
+  display: grid;
+  gap: 3px;
+  color: #b8c3ca;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.nexora-footer-unavailable small,
+.nexora-payment-method small,
+.nexora-payment-pending small {
+  color: #8fa0aa;
+  font-size: 10px;
+}
+.nexora-payment-method {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #e8edeb;
+  font-size: 12px;
+}
+.nexora-payment-method svg {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: #d5e68c;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+.nexora-payment-method span,
+.nexora-payment-pending {
+  display: grid;
+  gap: 4px;
+}
+.nexora-payment-pending {
+  color: #b8c3ca;
+  font-size: 12px;
+}
+.nexora-footer-payments > p {
+  margin-top: 1px;
+  font-size: 11px;
+}
+.nexora-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 28px;
+  padding-top: 19px;
+  padding-bottom: 21px;
+  border-top: 1px solid rgb(214 227 228 / 17%);
+}
+.nexora-footer-copyright,
+.nexora-footer-credit {
+  margin: 0;
+  color: #aab8bf;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.nexora-footer-credit { text-align: right; }
+.nexora-footer-credit-name {
+  color: #d5e68c;
+  transition: color .2s ease, text-shadow .2s ease;
+}
+.nexora-footer-credit-name:hover {
+  color: #eff6bc;
+  text-shadow: 0 0 14px rgb(213 230 140 / 35%);
+}
+
+@media (max-width: 900px) {
+  .nexora-footer-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 38px 48px;
+    padding-top: 48px;
+    padding-bottom: 42px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nexora-footer-main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 31px;
+    padding-top: 40px;
+    padding-bottom: 36px;
+  }
+  .nexora-footer-column { gap: 11px; }
+  .nexora-footer-column h2 { margin-bottom: 4px; }
+  .nexora-footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 15px;
+    padding-bottom: 19px;
+  }
+  .nexora-footer-credit { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nexora-footer-column > a,
+  .nexora-footer-credit-name { transition: none; }
+  .nexora-footer-column > a:hover { transform: none; }
+}

@@ -181,7 +181,51 @@ function HeartIcon() { return <svg viewBox="0 0 24 24" aria-hidden="true"><path 
 function BagIcon() { return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z" /><path d="M9 9V6a3 3 0 0 1 6 0v3" /></svg>; }
 function SearchIcon() { return <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 4.5 4.5" /></svg>; }
 
-function Footer() { return <footer className="market-footer"><div className="footer-main page-width"><div><Link className="brand" to="/"><span className="brand-mark">n</span><span>NEXORA</span></Link><p>Discover. Choose. Shop.<br />Good things from good people.</p></div><div className="footer-links"><strong>Marketplace</strong><Link to="/products">Shop all</Link><Link to="/about">About us</Link><Link to="/faq">FAQs</Link></div><div className="footer-links"><strong>Need a hand?</strong><Link to="/contact">Contact us</Link><Link to="/privacy">Privacy policy</Link><Link to="/terms">Terms and conditions</Link></div><div className="footer-links"><strong>For sellers</strong><Link to="/seller/register">Open your store</Link><Link to="/seller/login">Seller sign in</Link></div></div><div className="footer-bottom page-width"><span>© 2026 Nexora. Built for the joy of finding.</span><span>Online payments not yet available · Cash on Delivery demo available</span></div><p className="footer-credit">Developed by <span className="footer-credit-name">Siddhartha Mani</span> | Full-Stack Developer</p></footer>; }
+function Footer() {
+  return <footer className="nexora-footer">
+    <div className="nexora-footer-main page-width">
+      <div className="nexora-footer-brand">
+        <Link className="nexora-footer-wordmark" to="/" aria-label="Nexora home">
+          <span className="nexora-footer-mark">n</span><span>NEXORA</span>
+        </Link>
+        <p className="nexora-footer-tagline">Discover. Choose. Shop.</p>
+        <p className="nexora-footer-description">Your destination for discovering products you&apos;ll love.</p>
+      </div>
+      <nav className="nexora-footer-column" aria-label="Quick links">
+        <h2>Quick links</h2>
+        <Link to="/">Home</Link>
+        <Link to="/products">Shop products</Link>
+        <Link to="/#categories">Categories</Link>
+        <Link to="/cart">My cart</Link>
+        <Link to="/wishlist">My wishlist</Link>
+      </nav>
+      <nav className="nexora-footer-column" aria-label="Customer support">
+        <h2>Customer support</h2>
+        <Link to="/contact">Contact us</Link>
+        <Link to="/faq">Frequently asked questions</Link>
+        <span className="nexora-footer-unavailable">Shipping information <small>Page coming soon</small></span>
+        <span className="nexora-footer-unavailable">Returns and refunds <small>Page coming soon</small></span>
+        <Link to="/privacy">Privacy policy</Link>
+        <Link to="/terms">Terms and conditions</Link>
+      </nav>
+      <div className="nexora-footer-column nexora-footer-payments">
+        <h2>Payment methods</h2>
+        <div className="nexora-payment-method">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5h18v11H3zM3 11h18M7 15.5h4" /><path d="M7 5.5h14" /></svg>
+          <span>Cash on Delivery<small>Available</small></span>
+        </div>
+        <div className="nexora-payment-pending">
+          <span>Online payments</span><small>Not available yet</small>
+        </div>
+        <p>Online checkout is not enabled. Orders currently use Cash on Delivery.</p>
+      </div>
+    </div>
+    <div className="nexora-footer-bottom page-width">
+      <p className="nexora-footer-copyright">&copy; 2026 Nexora. All rights reserved.</p>
+      <p className="nexora-footer-credit">Designed and Developed by <span className="nexora-footer-credit-name">Siddhartha Mani</span> | Full-Stack Developer</p>
+    </div>
+  </footer>;
+}
 
 function App() {
   return <StoreProvider><Marketplace /></StoreProvider>;
@@ -218,7 +262,7 @@ function Home() {
   const trending = [...items].sort((a, b) => (b.soldCount || 0) - (a.soldCount || 0)).slice(0, 4);
   const discounted = items.filter(item => item.discount).slice(0, 4);
   const fresh = [...items].sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)).slice(0, 4);
-  return <><section className="market-hero page-width"><div className="market-hero-copy"><span className="eyebrow"><i /> THE GOOD FINDS MARKETPLACE</span><h1>Make room<br />for <em>better.</em></h1><p>Thoughtful finds from independent Indian makers and small stores. A little less ordinary starts here.</p><Link className="button button-dark" to="/products">Shop the collection <span>↗</span></Link><div className="hero-trust"><b>₹</b> Made for India · Cash on Delivery available</div></div><div className="market-hero-visual"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1400&q=85" alt="A considered collection of fashion essentials" /><div className="hero-image-caption"><small>THE NEW SEASON EDIT</small><strong>Everyday, elevated.</strong></div><span className="hero-stamp">n°</span></div><div className="hero-side-note">INDEPENDENT FINDS <span>—</span> CONSIDERED GOODS</div></section><section className="category-section page-width"><SectionHeading eyebrow="A GOOD PLACE TO START" title={<>Find your <em>thing.</em></>} link="Explore all" /><div className="market-categories">{categories.map((category, index) => <Link className={`market-category category-${index}`} to={`/products?category=${encodeURIComponent(category)}`} key={category}><span className="category-img" /><strong>{category}</strong><small>{["Smart picks, less fuss", "Pieces with staying power", "Make yourself at home", "Stories worth keeping", "Little details, well chosen"][index]}</small><i>↗</i></Link>)}</div></section><section className="home-products"><div className="page-width"><SectionHeading eyebrow="THE NEXORA SELECTION" title={<>Good finds, <em>right here.</em></>} link="Shop all" /><ProductGrid items={featured} /></div></section><section className="page-width discounted-products"><SectionHeading eyebrow="FRESH OFF THE SHELF" title={<>New arrivals, <em>just in.</em></>} link="Explore new finds" to="/products?sort=newest" /><ProductGrid items={fresh} /></section><section className="home-promo page-width"><div className="home-promo-copy"><span className="eyebrow">A LITTLE TREAT, ON US</span><h2>Good taste.<br /><em>Better prices.</em></h2><p>Thoughtful finds, special prices. Save on hand-picked favourites.</p><Link className="button button-light" to="/products?sort=discount">Shop offers ↗</Link></div><img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=1100&q=85" alt="A warm, considered home interior" /><span className="offer-seal">GOOD<br />DEAL</span></section><section className="page-width home-products secondary-products"><SectionHeading eyebrow="WORTH A LOOK" title={<>Popular for a <em>reason.</em></>} link="See everything" /><ProductGrid items={trending} /></section><section className="page-width discounted-products"><SectionHeading eyebrow="A GOOD DEAL FOUND" title={<>Little luxuries, <em>less.</em></>} /><ProductGrid items={discounted} /></section><Newsletter /></>;
+  return <><section className="market-hero page-width"><div className="market-hero-copy"><span className="eyebrow"><i /> THE GOOD FINDS MARKETPLACE</span><h1>Make room<br />for <em>better.</em></h1><p>Thoughtful finds from independent Indian makers and small stores. A little less ordinary starts here.</p><Link className="button button-dark" to="/products">Shop the collection <span>↗</span></Link><div className="hero-trust"><b>₹</b> Made for India · Cash on Delivery available</div></div><div className="market-hero-visual"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1400&q=85" alt="A considered collection of fashion essentials" /><div className="hero-image-caption"><small>THE NEW SEASON EDIT</small><strong>Everyday, elevated.</strong></div><span className="hero-stamp">n°</span></div><div className="hero-side-note">INDEPENDENT FINDS <span>—</span> CONSIDERED GOODS</div></section><section id="categories" className="category-section page-width"><SectionHeading eyebrow="A GOOD PLACE TO START" title={<>Find your <em>thing.</em></>} link="Explore all" /><div className="market-categories">{categories.map((category, index) => <Link className={`market-category category-${index}`} to={`/products?category=${encodeURIComponent(category)}`} key={category}><span className="category-img" /><strong>{category}</strong><small>{["Smart picks, less fuss", "Pieces with staying power", "Make yourself at home", "Stories worth keeping", "Little details, well chosen"][index]}</small><i>↗</i></Link>)}</div></section><section className="home-products"><div className="page-width"><SectionHeading eyebrow="THE NEXORA SELECTION" title={<>Good finds, <em>right here.</em></>} link="Shop all" /><ProductGrid items={featured} /></div></section><section className="page-width discounted-products"><SectionHeading eyebrow="FRESH OFF THE SHELF" title={<>New arrivals, <em>just in.</em></>} link="Explore new finds" to="/products?sort=newest" /><ProductGrid items={fresh} /></section><section className="home-promo page-width"><div className="home-promo-copy"><span className="eyebrow">A LITTLE TREAT, ON US</span><h2>Good taste.<br /><em>Better prices.</em></h2><p>Thoughtful finds, special prices. Save on hand-picked favourites.</p><Link className="button button-light" to="/products?sort=discount">Shop offers ↗</Link></div><img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=1100&q=85" alt="A warm, considered home interior" /><span className="offer-seal">GOOD<br />DEAL</span></section><section className="page-width home-products secondary-products"><SectionHeading eyebrow="WORTH A LOOK" title={<>Popular for a <em>reason.</em></>} link="See everything" /><ProductGrid items={trending} /></section><section className="page-width discounted-products"><SectionHeading eyebrow="A GOOD DEAL FOUND" title={<>Little luxuries, <em>less.</em></>} /><ProductGrid items={discounted} /></section><Newsletter /></>;
 }
 
 function Newsletter() {
