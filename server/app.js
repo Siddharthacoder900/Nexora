@@ -9,6 +9,7 @@ const fs = require("node:fs");
 
 const app = express();
 app.disable("x-powered-by");
+app.set("trust proxy", 1);
 app.use(helmet({
   contentSecurityPolicy: { directives: {
     defaultSrc: ["'self'"],

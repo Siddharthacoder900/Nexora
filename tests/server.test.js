@@ -75,6 +75,26 @@ test("cross-origin state changes are rejected", async () => {
   assert.match((await response.json()).error, /origin/i);
 });
 
+test("same-origin HTTPS state changes work behind a trusted proxy", async () => {
+  const configuredOrigin = process.env.CLIENT_ORIGIN;
+  delete process.env.CLIENT_ORIGIN;
+  try {
+    const response = await fetch(`${baseUrl}/api/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Origin: baseUrl.replace("http://", "https://"),
+        "X-Forwarded-Proto": "https"
+      },
+      body: JSON.stringify({ name: "Demo", email: "demo@example.in", message: "A long enough sample message." })
+    });
+    assert.equal(response.status, 503);
+    assert.match((await response.json()).error, /not configured/i);
+  } finally {
+    if (configuredOrigin !== undefined) process.env.CLIENT_ORIGIN = configuredOrigin;
+  }
+});
+
 test("backend source is not served as a static asset", async () => {
   const response = await fetch(`${baseUrl}/server/routes/api.js`);
   assert.equal(response.status, 200);
